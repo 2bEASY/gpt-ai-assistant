@@ -20,6 +20,8 @@ import {
 } from './messages/index.js';
 import { Bot, Event, Source } from './models/index.js';
 import { getSources, setSources } from './repository/index.js';
+import { removeHistory } from './history/index.js';
+import { removePrompt } from './prompt/index.js';
 
 class Context {
   /**
@@ -248,6 +250,13 @@ class Context {
       if (config.ERROR_MESSAGE_DISABLED) return this;
       return this.pushText(t('__ERROR_ECONNABORTED'), [COMMAND_BOT_RETRY]);
     }
+    // region : 處理 400
+    if (err.response?.status == 400) {
+      removePrompt(context.userId);
+      removeHistory(context.userId);
+      return pushText('小幫手目前處於忙碌, 請稍候再次詢問');
+    }
+    // endregion
     if (err.response?.status >= 500) {
       if (config.ERROR_MESSAGE_DISABLED) return this;
       return this.pushText(t('__ERROR_UNKNOWN'), [COMMAND_BOT_RETRY]);
