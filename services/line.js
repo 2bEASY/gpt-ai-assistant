@@ -49,6 +49,15 @@ const reply = ({
   messages,
 });
 
+const pushMessage = ({
+  userId,
+  messages,
+}) => client.post('/v2/bot/message/push', {
+  to: userId,
+  messages,
+});
+
+
 const fetchGroupSummary = ({
   groupId,
 }) => client.get(`/v2/bot/group/${groupId}/summary`);
@@ -85,6 +94,7 @@ const fetchContent = ({
 
 export {
   reply,
+  pushMessage,
   fetchGroupSummary,
   fetchProfile,
   fetchContent,
