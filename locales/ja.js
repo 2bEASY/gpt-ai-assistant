@@ -108,6 +108,7 @@ const ja = {
   __ERROR_MAX_USERS_REACHED: '最大グループ数に達しています。',
   __ERROR_MISSING_ENV: (v) => `「${v}」環境変数が見つかりません。`,
   __MESSAGE_NEW_VERSION_AVAILABLE: (version) => `A new version ${version} is now available!`,
+  __MESSAGE_CALMING: 'お返事を準備しておりますので、しばらくお待ちいただきありがとうございます。',
   __SOURCE_NAME_SOME_GROUP: 'あるグループ',
   __SOURCE_NAME_SOMEONE: 'あるユーザー',
 };
